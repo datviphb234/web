@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-image: url("https://thumbs.dreamstime.com/b/bear-seamless-pattern-vector-polar-camera-scarf-isolated-repeat-wallpaper-tile-background-cartoon-illustration-doodle-white-d-154419222.jpg");
+    }
+
+    .container {
+        width: 500px;
+        height: 300px;
+        border: 2px solid black;
+        margin: 0 auto;
+        margin-top: 150px;
+        border-radius: 10px;
+        background-color: rgb(253, 241, 222);
+        position: relative;
+    }
+
+    h1 {
+        text-align: center;
+        color: black;
+        padding-top: 25px;
+    }
+
+    form {
+        margin-left: 100px;
+        font-size: 20px;
+    }
+
+    input {
+        width: 180px;
+        height: 25px;
+    }
+
+    .button {
+        height: 34px;
+        width: 88px;
+        margin-top: 5px;
+        margin-left: 203px;
+    }
+
+    form input .button {
+        margin-left: 30px;
+    }
+
+    #password {
+        margin-left: 5px;
+        margin-top: 5PX;
+    }
+
+    .bear>img {
+        height: 150px;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+    }
+</style>
+
+<body class="logim">
+    <script href="bai4.js">
+
+
+    </script>
+    <div class="container">
+        <h1> ĐĂNG NHẬP WEBSITE </h1>
+        <form action="" class="loginForm" autocomplete="off">
+            <div class="input-group">
+                <label for="username" class="label">user name :</label>
+                <input id="username" type="text" class="input">
+                <span class="error-message"></span>
+            </div>
+            <div class="input-group">
+                <label for="password" class="label">Password :</label>
+                <input id="password" type="password" class="password">
+                <span class="error-message"></span>
+            </div>
+            <div class="bear">
+                <img src="https://i.pinimg.com/originals/7c/39/30/7c393034d68344efcf9dc72bc8e56b8d.png" alt="">
+
+            </div>
+
+            <button onclick="check()" class="button" type="button">login</button>
+        </form>
+
+        <script>
+            function check() {
+                // lấy 
+                // var user1 = ["dodat", "123456789"];  array thì gọi bằng số 0-vv.v.v object thì gọi bằng tên thuộc tính
+                let user = document.querySelector('#username').value;
+                let pwd = document.querySelector('#password').value;
+                let userData = [
+                    { username: "DoDat", password: "123456789", name: "Dat" },
+                    { username: "DoDat2", password: "123456789d", name: "Dat" },
+                    { username: "DoDat3", password: "123456789e", name: "Dat" }
+                ]
+                // Lấy value của 2 cái thẻ input mà người dùng nhập rồi if else với userData
+                // Kiểm tra xem các miền đã được nhập chưa? chưa thì thông báo qua error-message
+                // Nếu cả 2 miền đã đc nhập thì kiểm tra xem tên đn có tồn tại không => có thì kiểm tra mk có đúng ko || không thì báo là tên đăng nhập ko tồn tại
+                // Có => chuyển trang || không => thông báo mk sai
+                if (user && pwd) {
+                  console.log("Hai mien da duoc nhap");
+                    if ( checkNguoiDungCoTonTaiHayKhong(user, userData) ) {
+                       console.log("nguoi dung co ton tai");
+                        let passwordReal = checkNguoiDungCoTonTaiHayKhong(user, userData); // user = "DoData" -> function tra ve "123456789abc"
+                        if ( checkMatKhauNguoiDungVuaNhap(pwd , passwordReal )){
+                           alert('chao mung ban');
+                            window.location.href="index.html";
+                        } else {
+                           alert('mat khau sai');
+                        }
+                    } else {
+                       alert("nguoi dung deo ton tai");
+                    }
+                }
+
+                else {
+                    if (user === null || user === "") {
+                       alert('ban chua nhap tai khoan')
+                    }
+                    else if (pwd === null || pwd === "") {
+                       alert('ban chua nhap mat khau')
+                    }
+                }
+
+            }
+
+            function checkNguoiDungCoTonTaiHayKhong(tenVuaNhap, duLieu) {
+                for ( i = 0 ; i < duLieu.length ; i++){
+                        if (tenVuaNhap === duLieu[i].username) {
+                            return duLieu[i].password;
+                            // Gui password tuong ung voi ten nguoi dung
+                        }
+                }
+                return false; //ko gui lai gi het
+            }
+
+            function checkMatKhauNguoiDungVuaNhap(passVuaNhap , passReal){
+                if (passVuaNhap === passReal) {
+                    return true;
+                }
+                return false;
+            }
+
+
+
+
+
+        </script>
+</body>
+
+</html>
